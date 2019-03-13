@@ -351,6 +351,10 @@ class EnvBatch(EnvBase):
 
                             result.append("{}{}".format("" if not prefix else (prefix + " "), directive))
 
+                    if "fram" in case.get_value("MACH") and job == "case.st_archive":
+                        directive = "--qos=preproc"
+                        result.append("{} {}".format(directive_prefix, directive))
+
         return "\n".join(result)
 
     def get_submit_args(self, case, job):
